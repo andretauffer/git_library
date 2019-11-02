@@ -11,7 +11,7 @@ If you're using this repo to setup your own project I would really appreciate an
 
 Be aware I just started this repo and might be updating it from now on to complete it. Testing is still to be updated.
 
-To get it running run npm install inside the root and inside the client folder. Then run follow this READ ME.
+To get it running run npm install inside the root and inside the client folder. Then follow this READ ME.
 
 ### to finish the database setup
 
