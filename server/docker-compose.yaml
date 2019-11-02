@@ -1,0 +1,29 @@
+version: "2"
+
+services:
+  database:
+    image: "postgres:11.5"
+    container_name: ""
+    networks:
+      - database-network
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+      - ./db/migration:/var/lib/postgresql/migration
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=database
+
+  admin:
+    image: "thajeztah/pgadmin4"
+    container_name: ""
+    networks:
+      - database-network
+    ports:
+      - 5050:5050
+
+networks:
+  database-network:
+    driver: bridge
