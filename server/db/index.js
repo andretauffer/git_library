@@ -1,4 +1,7 @@
 const { Pool } = require("pg");
+const globalConfig = require("../../config");
+
+console.log("global styff", global.gConfig, "the required", globalConfig);
 
 const pool = new Pool({
   connectionString: global.gConfig.databaseConnectionString

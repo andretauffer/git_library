@@ -1,3 +1,3 @@
 module.exports = {
-  login: require("./login.controller")
+  repositories: require("./repositories.controller")
 };

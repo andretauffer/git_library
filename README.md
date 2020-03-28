@@ -1,4 +1,4 @@
-## Basic setup
+## Github Library
 
 This repo is a basic react-express-postgresql setup using docker to serve the database.
 
@@ -13,25 +13,7 @@ Be aware I just started this repo and might be updating it from now on to comple
 
 To get it running run npm install inside the root and inside the client folder. Then follow this READ ME.
 
-### to finish the database setup
-
-Update the docker-compose.yaml file with your database information:
-container_name(both inside services and admin), networks(inside services, admin and networks), environment
-Then update the configurations.js file databaseConnectionString with your database user, password and database name.
-
-Migration code can be written in the db-setup file but...
-
-### TO BE UPDATED TO
-
-Migration code can be written as psql file inside the migration folder and run with npm run db-reset
-
 ### Available scripts
-
-To be updated
-next scripts:
-npm run db-reset
-npm run server-test
-npm run push-production
 
 ### to run the client `npm run client`
 
@@ -55,23 +37,3 @@ The db is run on port 5432 inside a docker container
 
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### Making a Progressive Web App
-
-To be updated
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Deployment
-
-To be updated
