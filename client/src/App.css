@@ -13,6 +13,7 @@
   --blue: #e6feff;
   --white: #fbfaff;
   --dark: #694649;
+  --darker: #362425;
   background-color: var(--dark);
 }
 

@@ -11,7 +11,6 @@ export default Component => {
       headers = { "Content-type": "application/json" },
       object
     }) => {
-      console.log("is it the right path??", path);
       await fetch(path, {
         method,
         body: JSON.stringify(object),
@@ -21,9 +20,7 @@ export default Component => {
           return result.json();
         })
         .then(res => {
-          console.log("res", res);
           data = res;
-          console.log("the", res);
           setLoading(false);
         });
       return data;

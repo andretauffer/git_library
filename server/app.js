@@ -22,12 +22,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/search", repositories);
-// app.get("/getList", async (req, res) => {
-//   console.log("list");
-//   var list = await fetchData();
-//   console.log(list);
-//   res.send(list.rows);
-// });
 
 // //reinitiates the users table
 // app.get("/refreshUsersTable", async (req, res) => {

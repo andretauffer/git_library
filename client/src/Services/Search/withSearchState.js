@@ -4,7 +4,9 @@ const initialState = {
   search: "",
   searchList: [],
   fullResult: {},
-  sort: ""
+  sort: "",
+  totalPages: "",
+  page: "1"
 };
 
 function searchReducer(state, action) {
@@ -21,7 +23,8 @@ function searchReducer(state, action) {
       return {
         ...state,
         searchList: value.items,
-        fullResult: value
+        fullResult: value,
+        totalPages: Math.ceil(value.total_count / 10)
       };
     },
     default: () => {

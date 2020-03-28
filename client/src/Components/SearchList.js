@@ -13,7 +13,6 @@ const Container = styled.div`
 `;
 
 export default ({ searchState }) => {
-  console.log("tha searchState", searchState);
   const { searchList } = searchState;
   return (
     <Container>

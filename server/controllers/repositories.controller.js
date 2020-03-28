@@ -2,7 +2,8 @@ const api = require("../api/");
 const { repositories } = api;
 
 const getSearch = async (req, res) => {
-  const results = await repositories.getRepoBySearch(req.query.q);
+  console.log("q", req.query);
+  const results = await repositories.getRepoBySearch(req.query);
   res.send(results);
 };
 
