@@ -8,7 +8,7 @@ The feed in the center gets populated with repositories using the latest search 
 
 1.  Add sorting options for the feed.
 
-2.  Add codes to the feed.
+2.  Add codes search results to the feed.
 
 3.  Add other search options.
 
