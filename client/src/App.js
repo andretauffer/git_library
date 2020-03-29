@@ -42,6 +42,7 @@ function App() {
     <CookiesProvider>
       <Router>
         <div className="App">
+          <Link to="/"></Link>
           <Header>
             <G>Git</G>
             Library
@@ -49,12 +50,6 @@ function App() {
               <FontAwesomeIcon icon={faCat} />
             </Icon>
           </Header>
-
-          {/* <header className="App-header">
-
-            <Link to="/"></Link>
-          </header> */}
-          {/* <div className="nav-links"></div> */}
         </div>
         <Switch>
           <Route exact path="/" component={Home} />

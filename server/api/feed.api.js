@@ -32,5 +32,3 @@ module.exports = {
   getLatestKeywords,
   getNewsFeed
 };
-
-//&sort=${query.sort}&page=${query.page}&per_page=10

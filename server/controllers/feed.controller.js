@@ -1,7 +1,6 @@
 const api = require("../api");
 
 const { feed } = api;
-//q=react+useReducer+user:andretauffer
 const buildFeedQueries = array => {
   let queries = [];
   const keywords = array.filter(kw => kw.type === "keyword");
