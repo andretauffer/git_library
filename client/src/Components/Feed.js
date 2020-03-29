@@ -56,9 +56,6 @@ export default withSearchState(({ searchState, searchDispatch }) => {
   }, []);
 
   return (
-    <Container>
-      <FeedHeader>Most popular searches</FeedHeader>
-      {searchList && <SearchList {...{ searchState }} />}
-    </Container>
+    <Container>{searchList && <SearchList {...{ searchState }} />}</Container>
   );
 });

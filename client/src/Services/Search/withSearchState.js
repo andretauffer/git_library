@@ -21,6 +21,15 @@ function searchReducer(state, action) {
         [field]: value
       };
     },
+    changeType: () => {
+      return {
+        ...state,
+        [field]: value,
+        searchList: [],
+        totalPages: "",
+        fullResult: {}
+      };
+    },
     updateList: () => {
       return {
         ...state,

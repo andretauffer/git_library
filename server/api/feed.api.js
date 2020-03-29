@@ -22,7 +22,7 @@ const getLatestKeywords = async () =>
     .query(
       ` SELECT name, type FROM keywords
         ORDER BY created_date DESC
-        LIMIT 5`
+        LIMIT 3`
     )
     .then(res => res.rows)
     .catch(console.error);

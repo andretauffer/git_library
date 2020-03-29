@@ -50,6 +50,13 @@ const SearchInput = styled.input`
   margin-top: 5px;
 `;
 
+const PageInput = styled.input`
+  ${Row}
+  ${Style}
+  margin-top: 5px;
+  width: 30%;
+`;
+
 const SortResults = styled.select`
   ${Row}
   ${Style}
@@ -150,7 +157,7 @@ export default SearchBoxContainer(
         <SortResults
           onChange={e =>
             searchDispatch({
-              method: "input",
+              method: "changeType",
               field: "path",
               value: e.target.value
             })
@@ -229,7 +236,7 @@ export default SearchBoxContainer(
           <Page margin={"5px 10px 0 0"}>
             <ArrowLeft onClick={() => onClickArrows("left")} />
           </Page>
-          <SearchInput
+          <PageInput
             value={page}
             type="number"
             min="1"

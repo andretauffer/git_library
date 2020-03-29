@@ -2,14 +2,21 @@ const api = require("../api");
 const { search } = api;
 
 const getKeywords = string => {
-  const keywords = string.match(/[\w\s]*(?=user:)/g)[0];
-  const user = string.match(/(?<=user:)[\w\s]*/g)[0];
+  const user = string.match(/(?<=user:)[\w\s]*/g);
+  let keywords = [];
+  if (user) {
+    keywords = string.match(/[\w\s]*(?=user:)/g)[0];
+  } else {
+    keywords = string;
+  }
   const keywordsArray = keywords.split(" ");
   return { user, keywordsArray };
 };
 
 const registerKeywords = keywords => {
-  search.saveKeyword(keywords.user, "user");
+  if (keywords.user && keywords.user[0]) {
+    search.saveKeyword(keywords.user, "user");
+  }
   keywords.keywordsArray.map(kw => kw && search.saveKeyword(kw, "keyword"));
 };
 
