@@ -46,7 +46,6 @@ export default withSearchState(({ searchState, searchDispatch }) => {
     fetch(`http://localhost:5000/feed/`)
       .then(res => res.json())
       .then(response => {
-        console.log("response", response);
         searchDispatch({ method: "updateFeed", value: response });
       });
 

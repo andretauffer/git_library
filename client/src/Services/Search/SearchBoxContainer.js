@@ -15,7 +15,6 @@ export default Component => {
         fetch(query)
           .then(res => res.json())
           .then(data => {
-            console.log("data", data);
             searchDispatch({ method: "updateList", value: data, path });
           });
       }, 3000));

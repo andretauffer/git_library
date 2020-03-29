@@ -39,7 +39,6 @@ function searchReducer(state, action) {
       };
     },
     updateFeed: () => {
-      console.log("the value", value);
       return {
         ...state,
         searchList: value.items,

@@ -17,7 +17,6 @@ const Container = styled.div`
 
 export default ({ searchState }) => {
   const { searchList, path } = searchState;
-  console.log("inside list", searchState, path);
   return (
     <Container>
       {searchList &&

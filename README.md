@@ -2,11 +2,17 @@
 
 This project is a github search engine that allows for searching repositories and code snippets through the github REST api v3.
 The search results are displayed in 10 by page, in boxes that display the repo name, owner and a description when available. Each result box when clicked opens a new tab to show the repo/code in github.
-It also has a feed that gets populated using the latest search topics found in the database.
+The feed in the center gets populated with repositories using the latest search topics found in the database sorted by the latest updated.
 
 ### Next steps for the project
 
-Get authentication and permission for the app so that we can:
+1.  Add sorting options for the feed.
+
+2.  Add codes to the feed.
+
+3.  Add other search options.
+
+4.  Get authentication and permission for the app so that it is possible to:
 
 - Personalize the search topics for the feed with user specific keywords.
 - Show starred, forked, watched repos for the user.

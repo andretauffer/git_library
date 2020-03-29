@@ -34,10 +34,8 @@ const getFeed = async (req, res) => {
   if (keywords) {
     const queries = buildFeedQueries(keywords);
     const newsFeed = getNewsFeed(queries);
-    console.log("the", newsFeed, "news");
     return newsFeed.then(data => {
       const finalFeed = joinFeed(data);
-      console.log("the", finalFeed, "data");
       res.send(finalFeed);
     });
   }
