@@ -10,6 +10,9 @@ const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  @media only screen and (min-width: 700px) {
+    width: 100%;
+  }
 `;
 
 export default ({ searchState }) => {

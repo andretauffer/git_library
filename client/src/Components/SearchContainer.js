@@ -12,6 +12,14 @@ const Container = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  @media only screen and (min-width: 700px) {
+    width: 300px;
+    /* position: fixed; */
+    padding-top: 60px;
+    right: 5px;
+    top: 60px;
+    justify-content: flex-start;
+  }
 `;
 
 export default withSearchState(({ path, ...props }) => (

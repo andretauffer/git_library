@@ -44,7 +44,7 @@ export default Component => {
         clearTimeout(timer);
         abortController.abort();
       };
-    }, [search, sort, page]);
+    }, [search, sort, page, user]);
 
     return (
       <Component

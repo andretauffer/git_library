@@ -9,6 +9,14 @@ const Container = styled.div`
   overflow: scroll;
   position: relative;
   padding-top: 80px;
+  @media only screen and (min-width: 700px) {
+    width: calc(100% - 350px);
+    max-width: 1000px;
+    overflow: visible;
+    /* position: absolute; */
+    top: 0px;
+    left: 5px;
+  }
 `;
 
 const FeedHeader = styled.div`

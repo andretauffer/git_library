@@ -38,7 +38,6 @@ const Link = styled.a`
 `;
 
 export default ({ item, path }) => {
-  console.log("what is in the card", item, path);
   if (path === "repositories") {
     return (
       <Container>

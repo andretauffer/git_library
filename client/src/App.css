@@ -17,6 +17,10 @@
   background-color: var(--dark);
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .App {
   text-align: center;
   font-family: "American typewriter";

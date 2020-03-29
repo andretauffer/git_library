@@ -1,5 +1,7 @@
 const { Pool } = require("pg");
-const globalConfig = require("../../config");
+const pg = require("pg");
+
+pg.types.setTypeParser(1082, "text", val => val);
 
 const pool = new Pool({
   connectionString: global.gConfig.databaseConnectionString
