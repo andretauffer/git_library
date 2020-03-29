@@ -1,7 +1,7 @@
 ## Github Library
 
 This project is a github search engine that allows for searching repositories and code snippets through the github REST api v3.
-Right now the project has a seach engine that allows for searching repos or code and search by user. The results are displayed in 10 by page, in boxes that display the repo name, owner and a description when available.Each result box when clicked opens a new tab to show the repo/code in github.
+The search results are displayed in 10 by page, in boxes that display the repo name, owner and a description when available. Each result box when clicked opens a new tab to show the repo/code in github.
 It also has a feed that gets populated using the latest search topics found in the database.
 
 ### Next steps for the project
