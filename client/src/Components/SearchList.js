@@ -13,7 +13,8 @@ const Container = styled.div`
 `;
 
 export default ({ searchState }) => {
-  const { searchList } = searchState;
+  const { searchList, path } = searchState;
+  console.log("inside list", searchState, path);
   return (
     <Container>
       {searchList &&
@@ -21,10 +22,8 @@ export default ({ searchState }) => {
           <Card
             key={item.id}
             {...{
-              name: item.name,
-              owner: item.owner.login,
-              description: item.description,
-              url: item.html_url
+              item,
+              path
             }}
           />
         ))}

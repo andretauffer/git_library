@@ -6,11 +6,13 @@ const initialState = {
   fullResult: {},
   sort: "",
   totalPages: "",
-  page: "1"
+  page: "1",
+  user: "",
+  path: "repositories"
 };
 
 function searchReducer(state, action) {
-  const { method, field, value } = action;
+  const { method, field, value, path } = action;
 
   const methods = {
     input: () => {
@@ -25,6 +27,16 @@ function searchReducer(state, action) {
         searchList: value.items,
         fullResult: value,
         totalPages: Math.ceil(value.total_count / 10)
+      };
+    },
+    updateFeed: () => {
+      console.log("the value", value);
+      return {
+        ...state,
+        searchList: value.items,
+        fullResult: value,
+        totalPages: Math.ceil(value.total_count / 10),
+        path: value.path
       };
     },
     default: () => {

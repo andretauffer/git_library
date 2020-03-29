@@ -37,11 +37,26 @@ const Link = styled.a`
   left: 0;
 `;
 
-export default ({ name, owner, description, url }) => (
-  <Container>
-    <Link href={url} target="_blank" />
-    <Title>{name}</Title>
-    <Owner>{owner}</Owner>
-    <Description>{description}</Description>
-  </Container>
-);
+export default ({ item, path }) => {
+  console.log("what is in the card", item, path);
+  if (path === "repositories") {
+    return (
+      <Container>
+        <Link href={item.html_url} target="_blank" />
+        <Title>{item.name}</Title>
+        <Owner>{item.owner.login}</Owner>
+        <Description>{item.description}</Description>
+      </Container>
+    );
+  }
+  if (path === "codes") {
+    return (
+      <Container>
+        <Link href={item.html_url} target="_blank" />
+        <Title>{item.name}</Title>
+        <Owner>{item.repository.owner.login}</Owner>
+        <Description>{item.repository.description}</Description>
+      </Container>
+    );
+  }
+};

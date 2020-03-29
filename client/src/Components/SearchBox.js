@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import HOC from "../Services/HOC";
+
+const { SearchBoxContainer } = HOC;
 
 const Row = css`
   height: 40px;
@@ -19,42 +22,8 @@ const Style = css`
   }
 `;
 
-const Container = styled.div`
-  margin-top: 20px;
-  height: 150px;
-  width: 300px;
-  position: relative;
-`;
-
-const SearchInput = styled.input`
-  ${Row}
-  ${Style}
-`;
-
-const SortResults = styled.select`
-  ${Row}
-  ${Style}
+const BlackBox = css`
   margin-top: 5px;
-`;
-
-const PaginationContainer = styled.div`
-  ${Row}
-  margin-top: 5px;
-  display: flex;
-  flex-flow: row nowrap;
-`;
-
-const Page = styled.div`
-  ${Style}
-  min-width: 40px;
-  height: 100%;
-  margin: ${props => props.margin};
-  position: relative;
-`;
-
-const PagesDisplay = styled.div`
-  ${Row}
-  margin-left: 5px;
   border-radius: var(--border-radius);
   border: none;
   text-indent: 10px;
@@ -68,12 +37,66 @@ const PagesDisplay = styled.div`
   position: relative;
 `;
 
+const Container = styled.div`
+  margin-top: 20px;
+  width: 300px;
+  position: relative;
+`;
+
+const SearchInput = styled.input`
+  ${Row}
+  ${Style}
+  position: relative;
+  margin-top: 5px;
+`;
+
+const SortResults = styled.select`
+  ${Row}
+  ${Style}
+  margin-top: 5px;
+`;
+
+const PaginationContainer = styled.div`
+  ${Row}
+  margin-top: 5px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+`;
+
+const Page = styled.div`
+  ${Style}
+  min-width: 40px;
+  height: 100%;
+  margin: ${props => props.margin};
+  position: relative;
+`;
+
+const PagesDisplay = styled.div`
+  ${Row}
+  ${BlackBox}
+  margin-left: 5px;
+`;
+
 const PagesTitle = styled.p`
   position: absolute;
   top: 5px;
   left: 0px;
   font-size: 0.5rem;
   text-transform: uppercase;
+`;
+
+const InputContainer = styled.div`
+  position: relative;
+`;
+
+const InputTitle = styled.p`
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  color: var(--red);
 `;
 
 const ArrowLeft = styled.div`
@@ -102,110 +125,131 @@ const ArrowRight = styled.div`
 
 const SearchIcon = styled.div`
   position: absolute;
-  top: 10px;
+  top: 15px;
   right: 10px;
   color: var(--red);
 `;
 
-export default ({ searchState, searchDispatch }) => {
-  const { search, sort, totalPages, page } = searchState;
+const Warning = styled.div`
+  ${BlackBox}
+  height: 20px;
+  text-transform: uppercase;
+  color: var(--red);
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-align: center;
+  background-color: var(--darker);
+`;
 
-  let timer;
+export default SearchBoxContainer(
+  ({ onClickArrows, searchState, searchDispatch }) => {
+    const { search, totalPages, page, user, path } = searchState;
 
-  const getSearch = () =>
-    (timer = setTimeout(() => {
-      fetch(
-        `http://localhost:5000/api/search?q=${search}&sort=${sort}&page=${page}`
-      )
-        .then(res => res.json())
-        .then(data => {
-          searchDispatch({ method: "updateList", value: data });
-        });
-    }, 3000));
-
-  const onClickArrows = direction => {
-    if (direction === "left" && page > 1) {
-      searchDispatch({
-        method: "input",
-        field: "page",
-        value: Number(page) - 1
-      });
-    }
-    if (direction === "right" && page < totalPages) {
-      searchDispatch({
-        method: "input",
-        field: "page",
-        value: Number(page) + 1
-      });
-    }
-  };
-
-  useEffect(() => {
-    const abortController = new AbortController();
-    search && getSearch();
-    return () => {
-      clearTimeout(timer);
-      abortController.abort();
-    };
-  }, [search, sort, page]);
-
-  return (
-    <Container>
-      <SearchInput
-        autoFocus
-        {...{
-          placeholder: "Search for repositories...",
-          value: search,
-          onChange: e =>
-            searchDispatch({
-              method: "input",
-              field: "search",
-              value: e.target.value
-            })
-        }}
-      />
-      <SortResults
-        onChange={e =>
-          searchDispatch({
-            method: "input",
-            field: "sort",
-            value: e.target.value
-          })
-        }
-      >
-        <option value="sort">Best Match</option>
-        <option value="starts">Stars</option>
-        <option value="forks">Forks</option>
-        <option value="help-wanted-issues">Help Wanted Issues</option>
-        <option value="updated">Last updated</option>
-      </SortResults>
-      <PaginationContainer>
-        <Page margin={"0 10px 0 0"}>
-          <ArrowLeft onClick={() => onClickArrows("left")} />
-        </Page>
-        <SearchInput
-          value={page}
-          type="number"
-          min="1"
+    return (
+      <Container>
+        <SortResults
           onChange={e =>
             searchDispatch({
               method: "input",
-              field: "page",
+              field: "path",
               value: e.target.value
             })
           }
-        />
-        <PagesDisplay>
-          <PagesTitle>Pages</PagesTitle>
-          {totalPages}
-        </PagesDisplay>
-        <Page margin={"0 0 0 10px"} onClick={() => onClickArrows("right")}>
-          <ArrowRight />
-        </Page>
-      </PaginationContainer>
-      <SearchIcon>
-        <FontAwesomeIcon icon={faSearch} />
-      </SearchIcon>
-    </Container>
-  );
-};
+        >
+          <option value="repositories">Respositories</option>
+          <option value="codes">Codes</option>
+        </SortResults>
+        <InputContainer>
+          <SearchInput
+            autoFocus
+            {...{
+              placeholder: `Search for ${path}...`,
+              value: search,
+              onChange: e =>
+                searchDispatch({
+                  method: "input",
+                  field: "search",
+                  value: e.target.value
+                })
+            }}
+          />
+          <SearchIcon>
+            <FontAwesomeIcon icon={faSearch} />
+          </SearchIcon>
+        </InputContainer>
+        {path === "codes" && <Warning>This query requires a username</Warning>}
+
+        <InputContainer>
+          <SearchInput
+            {...{
+              placeholder: `By user...`,
+              value: user,
+              onChange: e =>
+                searchDispatch({
+                  method: "input",
+                  field: "user",
+                  value: e.target.value
+                })
+            }}
+          />
+          <InputTitle>Username</InputTitle>
+        </InputContainer>
+        {path === "repositories" && (
+          <SortResults
+            onChange={e =>
+              searchDispatch({
+                method: "input",
+                field: "sort",
+                value: e.target.value
+              })
+            }
+          >
+            <option value="sort">Best Match</option>
+            <option value="starts">Stars</option>
+            <option value="forks">Forks</option>
+            <option value="help-wanted-issues">Help Wanted Issues</option>
+            <option value="updated">Last updated</option>
+          </SortResults>
+        )}
+        {path === "codes" && (
+          <SortResults
+            onChange={e =>
+              searchDispatch({
+                method: "input",
+                field: "sort",
+                value: e.target.value
+              })
+            }
+          >
+            <option value="sort">Best Match</option>
+            <option value="indexed">Indexed</option>
+          </SortResults>
+        )}
+        <PaginationContainer>
+          <Page margin={"5px 10px 0 0"}>
+            <ArrowLeft onClick={() => onClickArrows("left")} />
+          </Page>
+          <SearchInput
+            value={page}
+            type="number"
+            min="1"
+            onChange={e =>
+              searchDispatch({
+                method: "input",
+                field: "page",
+                value: e.target.value
+              })
+            }
+          />
+          <PagesDisplay>
+            <PagesTitle>Pages</PagesTitle>
+            {totalPages}
+          </PagesDisplay>
+          <Page margin={"5px 0 0 10px"} onClick={() => onClickArrows("right")}>
+            <ArrowRight />
+          </Page>
+        </PaginationContainer>
+      </Container>
+    );
+  }
+);

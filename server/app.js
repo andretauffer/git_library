@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const { databaseConnect, pool } = require("./db");
-const { repositories } = require("./routers");
+const { search, feed } = require("./routers");
 
 const app = express();
 
@@ -20,8 +20,11 @@ app.use(function(req, res, next) {
 app.get("/", (req, res) => {
   res.send({ message: "Hello World!" });
 });
+app.get("/feed", feed);
 
-app.use("/api/search", repositories);
+app.get("/api/feed", feed);
+app.use("/api/feed", feed);
+app.use("/api/search", search);
 
 // //reinitiates the users table
 // app.get("/refreshUsersTable", async (req, res) => {
@@ -57,10 +60,10 @@ app.use("/api/search", repositories);
 app.use(express.static(path.join(__dirname, "art_map_sthlm/build")));
 
 // Handles any requests that don't match the ones above
-app.get("*", (req, res) => {
-  console.log("getting hereeeee");
-  res.sendFile(path.join(__dirname + "/client/build/index.html"));
-});
+// app.get("*", (req, res) => {
+//   console.log("falling here");
+//   res.sendFile(path.join(__dirname + "/client/build/index.html"));
+// });
 
 const port = process.env.PORT || 5000;
 app.listen(port);

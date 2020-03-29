@@ -34,7 +34,7 @@
 }
 
 .nav-links {
-  background-color: #282c34;
+  background-color: var(--darker);
   height: 10vh;
   min-width: 100%;
   display: flex;

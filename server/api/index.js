@@ -1,3 +1,4 @@
 module.exports = {
-  repositories: require("./repository.api")
+  search: require("./search.api"),
+  feed: require("./feed.api")
 };

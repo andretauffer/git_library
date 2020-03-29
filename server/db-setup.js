@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 const { databaseConnect } = require("./db");
 const Client = pg.Client;
 const app = express();
-console.log(global.gConfig);
 
 databaseConnect();
 

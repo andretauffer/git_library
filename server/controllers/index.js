@@ -1,3 +1,4 @@
 module.exports = {
-  repositories: require("./repositories.controller")
+  search: require("./search.controller"),
+  feed: require("./feed.controller")
 };

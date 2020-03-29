@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import SearchBox from "../Components/SearchBox";
-import SearchList from "../Components/SearchList";
-import HOC from "../Services/HOC";
-const { withSearchState } = HOC;
+import SearchComponent from "../Components/SearchContainer";
+import Feed from "../Components/Feed";
 
 const Container = styled.div`
   height: 100%;
@@ -14,9 +12,9 @@ const Container = styled.div`
   align-items: center;
 `;
 
-export default withSearchState(props => (
+export default () => (
   <Container>
-    <SearchBox {...props} />
-    <SearchList {...props} />
+    <Feed className="feed" />
+    <SearchComponent />
   </Container>
-));
+);

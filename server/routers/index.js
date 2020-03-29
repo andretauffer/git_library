@@ -1,3 +1,4 @@
 module.exports = {
-  repositories: require("./respositories.router")
+  search: require("./search.router"),
+  feed: require("./feed.router")
 };
