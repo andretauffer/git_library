@@ -53,11 +53,17 @@ const SearchInput = styled.input`
   margin-top: 5px;
 `;
 
+const PageNumbersContainer = styled.div`
+  width: calc(100% - 90px);
+  display: flex;
+  flex-flow: row nowrap;
+`;
+
 const PageInput = styled.input`
   ${Row}
   ${Style}
   margin-top: 5px;
-  width: 30%;
+  width: calc(50%- 2.5px);
 `;
 
 const SortResults = styled.select`
@@ -86,6 +92,8 @@ const PagesDisplay = styled.div`
   ${Row}
   ${BlackBox}
   margin-left: 5px;
+  width: calc(50% -2.5px);
+  border: 2px solid var(--red);
 `;
 
 const PagesTitle = styled.p`
@@ -239,22 +247,24 @@ export default SearchBoxContainer(
           <Page margin={"5px 10px 0 0"}>
             <ArrowLeft onClick={() => onClickArrows("left")} />
           </Page>
-          <PageInput
-            value={page}
-            type="number"
-            min="1"
-            onChange={e =>
-              searchDispatch({
-                method: "input",
-                field: "page",
-                value: e.target.value
-              })
-            }
-          />
-          <PagesDisplay>
-            <PagesTitle>Pages</PagesTitle>
-            {totalPages}
-          </PagesDisplay>
+          <PageNumbersContainer>
+            <PageInput
+              value={page}
+              type="number"
+              min="1"
+              onChange={e =>
+                searchDispatch({
+                  method: "input",
+                  field: "page",
+                  value: e.target.value
+                })
+              }
+            />
+            <PagesDisplay>
+              <PagesTitle>Pages</PagesTitle>
+              {totalPages}
+            </PagesDisplay>
+          </PageNumbersContainer>
           <Page margin={"5px 0 0 10px"} onClick={() => onClickArrows("right")}>
             <ArrowRight />
           </Page>

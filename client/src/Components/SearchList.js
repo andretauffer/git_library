@@ -4,7 +4,6 @@ import Card from "./Card";
 
 const Container = styled.div`
   width: 300px;
-  max-height: 100%;
   border-radius: var(--border-radius);
   border: none;
   display: flex;
