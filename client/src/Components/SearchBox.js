@@ -20,6 +20,9 @@ const Style = css`
   ::placeholder {
     color: var(--red);
   }
+  :focus {
+    border: 2px solid var(--blue);
+  }
 `;
 
 const BlackBox = css`
