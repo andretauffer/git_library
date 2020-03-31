@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "./Card";
+import Spinner from "./Spinner";
 
 const Container = styled.div`
   width: 300px;
@@ -15,9 +16,10 @@ const Container = styled.div`
 `;
 
 export default ({ searchState }) => {
-  const { searchList, path } = searchState;
+  const { searchList, path, spinner } = searchState;
   return (
     <Container>
+      <Spinner {...{ spinner }} />
       {searchList &&
         searchList.map(item => (
           <Card

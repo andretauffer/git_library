@@ -24,9 +24,10 @@ const createKeywordTable = async () => {
     .query(
       `CREATE TABLE IF NOT EXISTS keywords (
       id SERIAL PRIMARY KEY,
-      name VARCHAR UNIQUE NOT NULL,
+      name VARCHAR UNIQUE NOT NULL UNIQUE,
       type VARCHAR NOT NULL,
-      created_date TIMESTAMP default current_timestamp
+      last_searched TIMESTAMP default current_timestamp,
+      count INT
       );`
     )
     .then(() => console.debug("table exists"))
@@ -37,8 +38,10 @@ const saveKeyword = async (keyword, type) => {
   await createKeywordTable();
   await pool
     .query(
-      `INSERT INTO keywords (name, type)
-      VALUES ($1, $2);`,
+      `INSERT INTO keywords (name, type, count)
+      VALUES ($1, $2, 1)
+      ON CONFLICT (name) 
+      DO UPDATE SET count = keywords.count + EXCLUDED.count;`,
       [keyword, type]
     )
     .then(() => console.debug("keyword saved"))

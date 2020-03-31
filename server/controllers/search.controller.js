@@ -17,7 +17,9 @@ const registerKeywords = keywords => {
   if (keywords.user && keywords.user[0]) {
     search.saveKeyword(keywords.user, "user");
   }
-  keywords.keywordsArray.map(kw => kw && search.saveKeyword(kw, "keyword"));
+  keywords.keywordsArray.map(
+    kw => kw && search.saveKeyword(kw.toUpperCase(), "keyword")
+  );
 };
 
 const getSearchRepo = async (req, res) => {

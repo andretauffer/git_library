@@ -1,6 +1,6 @@
 const api = require("../api");
-
 const { feed } = api;
+
 const buildFeedQueries = array => {
   let queries = [];
   const keywords = array.filter(kw => kw.type === "keyword");
@@ -24,19 +24,21 @@ const joinFeed = array => {
     result.items.push(...response.items);
     result.total_count = result.total_count + response.total_count;
   });
-  result.items.sort((a, b) => a.updated_at > b.updated_at);
+  result.items.sort((a, b) => (a.updated_at > b.updated_at ? 1 : -1));
   return result;
 };
 
 const getFeed = async (req, res) => {
-  const keywords = await feed.getLatestKeywords();
+  let keywords = await feed.getLatestKeywords();
   if (keywords) {
     const queries = buildFeedQueries(keywords);
     const newsFeed = getNewsFeed(queries);
     return newsFeed.then(data => {
       const finalFeed = joinFeed(data);
-      res.send(finalFeed);
+      res.send({ keywords, ...finalFeed });
     });
+  } else {
+    keywords = "default";
   }
   const results = await feed.getDefaultFeed();
   res.send({ path: "codes", ...results });

@@ -8,12 +8,14 @@
   --border-radius: 10px;
   --font-family: "Oswald", sans-serif;
   --red: #ffabb2;
+  --red-transparent: #ffabb21a;
   --violet: #e5d1e8;
   --grey: #d1d9e8;
   --blue: #e6feff;
   --white: #fbfaff;
   --dark: #694649;
   --darker: #362425;
+  --border: 2px solid var(--red);
   background-color: var(--dark);
 }
 

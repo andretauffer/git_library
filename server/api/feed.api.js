@@ -21,7 +21,8 @@ const getLatestKeywords = async () =>
   await pool
     .query(
       ` SELECT name, type FROM keywords
-        ORDER BY created_date DESC
+        WHERE type='keyword'
+        ORDER BY count DESC
         LIMIT 3`
     )
     .then(res => res.rows)

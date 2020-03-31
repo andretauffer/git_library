@@ -8,11 +8,13 @@ const initialState = {
   totalPages: "",
   page: "1",
   user: "",
-  path: "repositories"
+  path: "repositories",
+  latestKeywords: [],
+  spinner: false
 };
 
 function searchReducer(state, action) {
-  const { method, field, value, path } = action;
+  const { method, field, value } = action;
 
   const methods = {
     input: () => {
@@ -35,7 +37,8 @@ function searchReducer(state, action) {
         ...state,
         searchList: value.items,
         fullResult: value,
-        totalPages: Math.ceil(value.total_count / 10)
+        totalPages: Math.ceil(value.total_count / 10),
+        spinner: false
       };
     },
     updateFeed: () => {
@@ -44,7 +47,15 @@ function searchReducer(state, action) {
         searchList: value.items,
         fullResult: value,
         totalPages: Math.ceil(value.total_count / 10),
-        path: value.path
+        path: value.path,
+        latestKeywords: value.keywords,
+        spinner: false
+      };
+    },
+    spinner: () => {
+      return {
+        ...state,
+        spinner: true
       };
     },
     default: () => {

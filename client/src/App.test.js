@@ -1,8 +1,6 @@
-// jest.mock("./Views/__mocks__/Map");
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-// import Gallery from "./Views/Gallery";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");

@@ -26,6 +26,8 @@ The project was setup with react's cra for the client and an express node server
 
 ### Available scripts
 
+All the following scripts should be ran in the root directory of the project.
+
 ### to run the client `npm run client`
 
 Runs the app in the development mode.<br>
@@ -49,33 +51,39 @@ The db is run on port 5432 inside a docker container
 
 Steps to get it running using npm:
 
-1.  Clone the repo
-2.  Install dependencies for the express server in the root
+All the following cli commands should be ran inside the root directory.
+
+1.  Clone the repo in your chosen directory then run:
+
+```
+cd git_library
+```
+
+2.  Install dependencies for the express server in the root by running:
 
 ```
 npm i
 ```
 
-3.  Install dependencies for the react client inside the client folder
+3.  Install dependencies for the react client inside the client folder by running the following cli command in the root:
 
 ```
-cd client
-npm i
+cd client && npm i && cd ..
 ```
 
-4.  Start the database:
+4.  Start the database by running the following script in the root:
 
 ```
 npm run db
 ```
 
-5.  Start the server (when the db is ready):
+5.  Start the server (when the db is ready) by running the following script in the root:
 
 ```
 npm run server
 ```
 
-6.  Start the client:
+6.  Start the client by running the following script in the root:
 
 ```
 npm run client

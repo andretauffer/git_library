@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import SearchBox from "./SearchBox";
+import SearchBox from "./SearchBox/SearchBox";
 import SearchList from "./SearchList";
 import HOC from "../Services/HOC";
 const { withSearchState } = HOC;
