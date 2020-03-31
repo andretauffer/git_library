@@ -21,8 +21,10 @@ const getNewsFeed = async array => {
 const joinFeed = array => {
   const result = { path: "repositories", total_count: 0, items: [] };
   array.forEach(response => {
-    result.items.push(...response.items);
-    result.total_count = result.total_count + response.total_count;
+    if (typeof response.items === []) {
+      result.items.push(...response.items);
+      result.total_count = result.total_count + response.total_count;
+    }
   });
   result.items.sort((a, b) => (a.updated_at > b.updated_at ? 1 : -1));
   return result;
