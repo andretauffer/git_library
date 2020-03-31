@@ -77,13 +77,13 @@ cd client && npm i && cd ..
 npm run db
 ```
 
-5.  Start the server (when the db is ready) by running the following script in the root:
+5.  In a new terminal tab, start the server (when the db is ready) by running the following script in the root:
 
 ```
 npm run server
 ```
 
-6.  Start the client by running the following script in the root:
+6.  In a new terminal tab, start the client by running the following script in the root:
 
 ```
 npm run client
