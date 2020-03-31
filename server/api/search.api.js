@@ -1,6 +1,13 @@
 const fetch = require("node-fetch");
 const pool = require("../db").pool;
 
+const ERROR = {
+  dbConnection:
+    "### database connection refused, check if database is still running ### \n",
+  apiError:
+    "### api call refused, check if your are connected to the internet, and if you might have used all your free daily requests ### \n"
+};
+
 const searchPath = "https://api.github.com/search";
 
 const getRepoBySearch = async query =>
@@ -9,7 +16,9 @@ const getRepoBySearch = async query =>
     {
       method: "GET"
     }
-  ).then(data => data.json());
+  )
+    .then(data => data.json())
+    .catch(err => console.debug(ERROR.apiError, err));
 
 const getCodeBySearch = async query =>
   await fetch(
@@ -17,7 +26,9 @@ const getCodeBySearch = async query =>
     {
       method: "GET"
     }
-  ).then(data => data.json());
+  )
+    .then(data => data.json())
+    .catch(err => console.debug(ERROR.apiError, err));
 
 const createKeywordTable = async () => {
   await pool
@@ -31,7 +42,7 @@ const createKeywordTable = async () => {
       );`
     )
     .then(() => console.debug("table exists"))
-    .catch(console.error);
+    .catch(err => console.debug(ERROR.dbConnection, err));
 };
 
 const saveKeyword = async (keyword, type) => {
@@ -45,7 +56,7 @@ const saveKeyword = async (keyword, type) => {
       [keyword, type]
     )
     .then(() => console.debug("keyword saved"))
-    .catch(console.error);
+    .catch(err => console.debug(ERROR.dbConnection, err));
 };
 
 module.exports = {

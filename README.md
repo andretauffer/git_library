@@ -2,7 +2,7 @@
 
 This project is a github search engine that allows for searching repositories and code snippets through the github REST api v3.
 The search results are displayed in 10 by page, in boxes that display the repo name, owner and a description when available. Each result box when clicked opens a new tab to show the repo/code in github.
-The feed in the center gets populated with repositories using the latest search topics found in the database sorted by the latest updated.
+The feed in the center gets populated on every load with the most recently updated repositories related to the most popular search topics in this platform, that are found in the database sorted by the latest updated.
 The database runs on a docker container. However, the search engine and the default feed should work even without a running database.
 
 ### Next steps for the project

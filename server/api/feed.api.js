@@ -1,12 +1,15 @@
 const fetch = require("node-fetch");
 const pool = require("../db").pool;
+const ERROR = require("./error.log").ERROR;
 
 const searchPath = "https://api.github.com/search/";
 
 const getDefaultFeed = async () =>
   await fetch(`${searchPath}code?q=react+useReducer+user:andretauffer`, {
     method: "GET"
-  }).then(data => data.json());
+  })
+    .then(data => data.json())
+    .catch(err => console.debug(ERROR.apiError, err));
 
 const getNewsFeed = async (query, path) =>
   await fetch(`${searchPath}${query}`, {
@@ -26,7 +29,7 @@ const getLatestKeywords = async () =>
         LIMIT 3`
     )
     .then(res => res.rows)
-    .catch(console.error);
+    .catch(err => console.debug(ERROR.dbConnection, err));
 
 module.exports = {
   getDefaultFeed,

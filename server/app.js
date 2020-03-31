@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-const { databaseConnect, pool } = require("./db");
+const { databaseConnect } = require("./db");
 const { search, feed } = require("./routers");
 
 const app = express();

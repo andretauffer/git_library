@@ -27,7 +27,8 @@ const FeedHeader = styled.div`
   text-transform: uppercase;
   font-weight: bold;
   width: 100%;
-  min-height: 120px;
+  min-height: ${props =>
+    props.latestKeywords.length === 0 ? "70px" : "120px"};
   font-size: 0.9rem;
   display: flex;
   flex-flow: column nowrap;
@@ -72,8 +73,11 @@ export default withSearchState(({ searchState, searchDispatch }) => {
 
   return (
     <Container>
-      <FeedHeader>
-        Recent results based on the most popular keywords:
+      <FeedHeader {...{ latestKeywords }}>
+        {latestKeywords.length === 0
+          ? "Default feed - activate the database to see a constantly updating feed based the most popular search keywords"
+          : "Recent results based on the most popular keywords"}
+        :
         <KeywordsContainer>
           {latestKeywords &&
             latestKeywords.map(kw => <Keyword>{kw.name}</Keyword>)}

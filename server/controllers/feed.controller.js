@@ -38,10 +38,10 @@ const getFeed = async (req, res) => {
       res.send({ keywords, ...finalFeed });
     });
   } else {
-    keywords = "default";
+    keywords = [];
   }
   const results = await feed.getDefaultFeed();
-  res.send({ path: "codes", ...results });
+  res.send({ path: "codes", keywords, ...results });
 };
 
 module.exports = {
