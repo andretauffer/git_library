@@ -53,6 +53,10 @@ const Keyword = styled.div`
   margin-right: 5px;
 `;
 
+const HeaderHighlight = styled.div`
+  color: var(--blue);
+`;
+
 export default withSearchState(({ searchState, searchDispatch }) => {
   const { searchList, latestKeywords } = searchState;
 
@@ -74,10 +78,19 @@ export default withSearchState(({ searchState, searchDispatch }) => {
   return (
     <Container>
       <FeedHeader {...{ latestKeywords }}>
-        {latestKeywords.length === 0
-          ? "Default feed - activate the database to see a constantly updating feed based the most popular search keywords"
-          : "Recent results based on the most popular keywords"}
-        :
+        {latestKeywords.length === 0 ? (
+          <p>
+            <HeaderHighlight>Default feed</HeaderHighlight> activate the
+            database and do your first searches to see the feed updating on
+            every page load based on the most popular search keywords
+          </p>
+        ) : (
+          <p>
+            Recent results based on the
+            <HeaderHighlight>most popular</HeaderHighlight> keywords
+          </p>
+        )}
+
         <KeywordsContainer>
           {latestKeywords &&
             latestKeywords.map(kw => <Keyword>{kw.name}</Keyword>)}
