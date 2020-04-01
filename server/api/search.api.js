@@ -62,5 +62,6 @@ const saveKeyword = async (keyword, type) => {
 module.exports = {
   getRepoBySearch,
   getCodeBySearch,
-  saveKeyword
+  saveKeyword,
+  createKeywordTable
 };

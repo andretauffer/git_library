@@ -1,5 +1,5 @@
 const api = require("../api");
-const { feed } = api;
+const { feed, search } = api;
 
 const buildFeedQueries = array => {
   let queries = [];
@@ -21,18 +21,17 @@ const getNewsFeed = async array => {
 const joinFeed = array => {
   const result = { path: "repositories", total_count: 0, items: [] };
   array.forEach(response => {
-    if (typeof response.items === []) {
-      result.items.push(...response.items);
-      result.total_count = result.total_count + response.total_count;
-    }
+    result.items.push(...response.items);
+    result.total_count = result.total_count + response.total_count;
   });
   result.items.sort((a, b) => (a.updated_at > b.updated_at ? 1 : -1));
   return result;
 };
 
 const getFeed = async (req, res) => {
+  await search.createKeywordTable();
   let keywords = await feed.getLatestKeywords();
-  if (keywords) {
+  if (keywords && keywords.length > 0) {
     const queries = buildFeedQueries(keywords);
     const newsFeed = getNewsFeed(queries);
     return newsFeed.then(data => {

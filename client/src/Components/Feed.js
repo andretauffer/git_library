@@ -80,9 +80,9 @@ export default withSearchState(({ searchState, searchDispatch }) => {
       <FeedHeader {...{ latestKeywords }}>
         {latestKeywords.length === 0 ? (
           <p>
-            <HeaderHighlight>Default feed</HeaderHighlight> activate the
-            database and do your first searches to see the feed updating on
-            every page load based on the most popular search keywords
+            <HeaderHighlight>Default feed</HeaderHighlight> do your first
+            searches to see the feed updating on every page load based on the
+            most popular search keywords
           </p>
         ) : (
           <p>

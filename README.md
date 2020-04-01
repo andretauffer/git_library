@@ -33,15 +33,19 @@ All the following scripts should be ran in the root directory of the project.
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### to run the server`npm run server`
+### to run the server `npm run server`
 
 Runs the server in the development mode.<br>
 Open [http://localhost:8000](http://localhost:8000) to see Hello World in the browser.
 
-### to run the database`npm run db`
+### to run the database `npm run db`
 
 Runs the database in the development mode.<br>
 The db is run on port 5432 inside a docker container
+
+### to initiate the database schema `npm run db:init`
+
+Initiates the database schema by creating the tables required for the app.<br>
 
 ### To Run this project
 
@@ -77,16 +81,22 @@ cd client && npm i && cd ..
 npm run db
 ```
 
-5.  In a new terminal tab, start the server (when the db is ready) by running the following script in the root:
+5.  In a new terminal tab, initiate the database schema by running the following script in the root:
+
+```
+npm run db:init
+```
+
+6.  Then start the server (when the db is ready) by running the following script in the root:
 
 ```
 npm run server
 ```
 
-6.  In a new terminal tab, start the client by running the following script in the root:
+7.  In a new terminal tab, start the client by running the following script in the root:
 
 ```
 npm run client
 ```
 
-7.  Go to [http://localhost:3000](http://localhost:3000) and enjoy the search engine;
+8.  Go to [http://localhost:3000](http://localhost:3000) and enjoy the search engine;
