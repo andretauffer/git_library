@@ -47,6 +47,13 @@ The db is run on port 5432 inside a docker container
 
 Initiates the database schema by creating the tables required for the app.<br>
 
+### to run the linter `npm run lint`
+
+Runs eslint with the fix tag. This script runs on every commit and will stop the commit in two scenarios:
+
+1. The linter finds any error
+2. The linter finds more than 10 warnings
+
 ### To Run this project
 
 - Requirements

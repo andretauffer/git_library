@@ -11,7 +11,7 @@
     "build": "react-scripts build",
     "client-test": "cd client && npm run test",
     "eject": "react-scripts eject",
-    "lint": "npx eslint client/src/**/*.js --fix"
+    "lint": "npx eslint client/src/**/*.js --fix --max-warnings 10"
   },
   "eslintConfig": {
     "extends": "react-app"
