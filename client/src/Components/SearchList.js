@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import Card from "./Card";
 import Spinner from "./Spinner";
@@ -15,7 +16,7 @@ const Container = styled.div`
   }
 `;
 
-export default ({ searchState }) => {
+const SearchList = ({ searchState }) => {
   const { searchList, path, spinner } = searchState;
   return (
     <Container>
@@ -33,3 +34,20 @@ export default ({ searchState }) => {
     </Container>
   );
 };
+
+SearchList.propTypes = {
+  searchState: PropTypes.shape({
+    search: PropTypes.string,
+    searchList: PropTypes.array,
+    fullResult: PropTypes.object,
+    sort: PropTypes.string,
+    totalPages: PropTypes.number,
+    page: PropTypes.string,
+    user: PropTypes.string,
+    path: PropTypes.string,
+    latestKeywords: PropTypes.array,
+    spinner: PropTypes.bool.isRequired
+  })
+};
+
+export default SearchList;

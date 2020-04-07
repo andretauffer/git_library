@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -14,7 +15,7 @@ const Svg = styled.svg`
   width: 100px;
 `;
 
-const Spinner = styled.circle`
+const Circle = styled.circle`
   stroke-width: 10px;
   stroke-dasharray: 250px;
   stroke-linecap: round;
@@ -49,12 +50,12 @@ const Loading = styled.p`
   }
 `;
 
-export default ({ spinner }) => {
+const Spinner = ({ spinner }) => {
   if (spinner)
     return (
       <Container>
         <Svg>
-          <Spinner
+          <Circle
             cx="50"
             cy="50"
             r="40"
@@ -68,3 +69,9 @@ export default ({ spinner }) => {
     );
   return null;
 };
+
+Spinner.propTypes = {
+  spinner: PropTypes.bool.isRequired
+};
+
+export default Spinner;

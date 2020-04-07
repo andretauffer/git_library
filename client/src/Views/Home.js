@@ -17,9 +17,11 @@ const Container = styled.div`
   }
 `;
 
-export default () => (
+const Home = () => (
   <Container>
     <Feed className="feed" />
     <SearchComponent />
   </Container>
 );
+
+export default Home;

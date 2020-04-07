@@ -5,7 +5,7 @@ const initialState = {
   searchList: [],
   fullResult: {},
   sort: "",
-  totalPages: "",
+  totalPages: null,
   page: "1",
   user: "",
   path: "repositories",
@@ -42,7 +42,6 @@ function searchReducer(state, action) {
       };
     },
     updateFeed: () => {
-      console.log("the keywords", value.keywords);
       return {
         ...state,
         searchList: value.items,

@@ -79,21 +79,23 @@ export default withSearchState(({ searchState, searchDispatch }) => {
     <Container>
       <FeedHeader {...{ latestKeywords }}>
         {latestKeywords.length === 0 ? (
-          <p>
+          <div>
             <HeaderHighlight>Default feed</HeaderHighlight> do your first
             searches to see the feed updating on every page load based on the
             most popular search keywords
-          </p>
+          </div>
         ) : (
-          <p>
+          <div>
             Recent results based on the
             <HeaderHighlight>most popular</HeaderHighlight> keywords
-          </p>
+          </div>
         )}
 
         <KeywordsContainer>
           {latestKeywords &&
-            latestKeywords.map(kw => <Keyword>{kw.name}</Keyword>)}
+            latestKeywords.map((kw, i) => (
+              <Keyword key={i + kw.name}>{kw.name}</Keyword>
+            ))}
         </KeywordsContainer>
       </FeedHeader>
       {searchList && <SearchList {...{ searchState }} />}
