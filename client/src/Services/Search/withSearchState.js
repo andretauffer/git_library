@@ -10,11 +10,12 @@ const initialState = {
   user: "",
   path: "repositories",
   latestKeywords: [],
-  spinner: false
+  spinner: false,
+  error: ""
 };
 
 function searchReducer(state, action) {
-  const { method, field, value } = action;
+  const { method, field, value, error } = action;
 
   const methods = {
     input: () => {
@@ -28,25 +29,31 @@ function searchReducer(state, action) {
         ...state,
         [field]: value,
         searchList: [],
-        totalPages: "",
+        totalPages: null,
         fullResult: {}
       };
     },
     updateList: () => {
+      const total = value.total_count
+        ? Math.ceil(value.total_count / 10)
+        : null;
       return {
         ...state,
         searchList: value.items,
         fullResult: value,
-        totalPages: Math.ceil(value.total_count / 10),
+        totalPages: total,
         spinner: false
       };
     },
     updateFeed: () => {
+      const total = value.total_count
+        ? Math.ceil(value.total_count / 10)
+        : null;
       return {
         ...state,
         searchList: value.items,
         fullResult: value,
-        totalPages: Math.ceil(value.total_count / 10),
+        totalPages: total,
         path: value.path,
         latestKeywords: value.keywords,
         spinner: false
@@ -56,6 +63,13 @@ function searchReducer(state, action) {
       return {
         ...state,
         spinner: true
+      };
+    },
+    error: () => {
+      return {
+        ...state,
+        error,
+        spinner: false
       };
     },
     default: () => {

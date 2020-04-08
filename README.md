@@ -82,28 +82,42 @@ npm i
 cd client && npm i && cd ..
 ```
 
-4.  Start the database by running the following script in the root:
+4. Make the git hooks executable by running the following scripts in the root directory:
+
+Change the path for the hooks:
+
+```
+git config core.hooksPath .githooks
+```
+
+Make them executable:
+
+```
+chmod +x .githooks/*
+```
+
+5.  Start the database by running the following script in the root:
 
 ```
 npm run db
 ```
 
-5.  In a new terminal tab, initiate the database schema by running the following script in the root:
+6.  In a new terminal tab, initiate the database schema by running the following script in the root:
 
 ```
 npm run db:init
 ```
 
-6.  Then start the server (when the db is ready) by running the following script in the root:
+7.  Then start the server (when the db is ready) by running the following script in the root:
 
 ```
 npm run server
 ```
 
-7.  In a new terminal tab, start the client by running the following script in the root:
+8.  In a new terminal tab, start the client by running the following script in the root:
 
 ```
 npm run client
 ```
 
-8.  Go to [http://localhost:3000](http://localhost:3000) and enjoy the search engine;
+9.  Go to [http://localhost:3000](http://localhost:3000) and enjoy the search engine;

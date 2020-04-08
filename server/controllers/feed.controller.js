@@ -35,8 +35,12 @@ const getFeed = async (req, res) => {
     const queries = buildFeedQueries(keywords);
     const newsFeed = getNewsFeed(queries);
     return newsFeed.then(data => {
-      const finalFeed = joinFeed(data);
-      res.send({ keywords, ...finalFeed });
+      if (data[0].error) {
+        res.send({ error: data[0].error });
+      } else {
+        const finalFeed = joinFeed(data);
+        res.send({ keywords, ...finalFeed });
+      }
     });
   } else {
     keywords = [];

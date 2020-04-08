@@ -17,8 +17,13 @@ const getNewsFeed = async (query, path) =>
   })
     .then(data => data.json())
     .then(res => {
+      if (res.message) {
+        console.debug(ERROR.apiError, res.message);
+        return { error: res.message };
+      }
       return { path, ...res };
-    });
+    })
+    .catch(err => console.debug(ERROR.apiError, err));
 
 const getLatestKeywords = async () =>
   await pool

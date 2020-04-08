@@ -33,13 +33,21 @@ export default Component => {
           ? `http://localhost:5000/api/search/${path}?q=${search}+user:${user}&sort=${sort}&page=${page}`
           : `http://localhost:5000/api/search/${path}?q=${search}&sort=${sort}&page=${page}`;
 
-        return (timer = setTimeout(() => {
+        return setTimeout(() => {
           fetch(query)
             .then(res => res.json())
             .then(data => {
-              searchDispatch({ method: "updateList", value: data, path });
-            });
-        }, 3000));
+              if (data.error) {
+                return searchDispatch({ method: "error", error: data.error });
+              }
+              return searchDispatch({
+                method: "updateList",
+                value: data,
+                path
+              });
+            })
+            .catch(err => searchDispatch({ method: "error", error: err }));
+        }, 3000);
       };
 
       search && getSearch();

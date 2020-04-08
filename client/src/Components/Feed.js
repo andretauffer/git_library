@@ -15,6 +15,7 @@ const Container = styled.div`
   @media only screen and (min-width: 700px) {
     width: calc(100% - 350px);
     max-width: 1000px;
+    height: auto;
     overflow: visible;
     top: 0px;
     left: 5px;
@@ -28,7 +29,7 @@ const FeedHeader = styled.div`
   font-weight: bold;
   width: 100%;
   min-height: ${props =>
-    props.latestKeywords.length === 0 ? "70px" : "120px"};
+    props.latestKeywords.length === 0 ? "70px" : "150px"};
   font-size: 0.9rem;
   display: flex;
   flex-flow: column nowrap;
@@ -41,6 +42,7 @@ const FeedHeader = styled.div`
 const KeywordsContainer = styled.div`
   display: flex;
   flex-flow: row nowrap;
+  margin-top: 10px;
 `;
 
 const Keyword = styled.div`
@@ -53,8 +55,10 @@ const Keyword = styled.div`
   margin-right: 5px;
 `;
 
-const HeaderHighlight = styled.div`
+const HeaderHighlight = styled.p`
   color: var(--blue);
+  font-size: ${props => (props.header ? props.header : "1rem")};
+  letter-spacing: 1px;
 `;
 
 export default withSearchState(({ searchState, searchDispatch }) => {
@@ -64,11 +68,18 @@ export default withSearchState(({ searchState, searchDispatch }) => {
     const abortController = new AbortController();
     searchDispatch({ method: "spinner" });
 
-    fetch(`http://localhost:5000/feed/`)
-      .then(res => res.json())
-      .then(response => {
-        searchDispatch({ method: "updateFeed", value: response });
-      });
+    const getFeed = () => {
+      fetch(`http://localhost:5000/feed/`)
+        .then(res => res.json())
+        .then(response => {
+          if (response.error) {
+            return searchDispatch({ method: "error", error: response.error });
+          }
+          return searchDispatch({ method: "updateFeed", value: response });
+        });
+    };
+
+    getFeed();
 
     return () => {
       abortController.abort();
@@ -78,11 +89,11 @@ export default withSearchState(({ searchState, searchDispatch }) => {
   return (
     <Container>
       <FeedHeader {...{ latestKeywords }}>
+        <HeaderHighlight header={"1.5rem"}>Repos Feed</HeaderHighlight>
         {latestKeywords.length === 0 ? (
           <div>
-            <HeaderHighlight>Default feed</HeaderHighlight> do your first
-            searches to see the feed updating on every page load based on the
-            most popular search keywords
+            The <HeaderHighlight>feed</HeaderHighlight> will update using the
+            most popular keywords searched in this platform
           </div>
         ) : (
           <div>
