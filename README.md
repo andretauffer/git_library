@@ -47,6 +47,12 @@ The db is run on port 5432 inside a docker container
 
 Initiates the database schema by creating the tables required for the app.<br>
 
+### to run the server tests `npm run test:server`
+
+Runs mocha test suites. This script runs on every commit and will stop the commit in this scenario:
+
+1. Any test breaks
+
 ### to run the linter `npm run lint`
 
 Runs eslint with the fix tag. This script runs on every commit and will stop the commit in two scenarios:
