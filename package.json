@@ -12,7 +12,8 @@
     "client-test": "cd client && npm run test",
     "eject": "react-scripts eject",
     "lint": "npx eslint client/src/**/*.js --fix --max-warnings 10",
-    "test:server": "mocha 'server/tests/**/*.js'"
+    "test:server": "mocha 'server/tests/**/*.js'",
+    "test:server:pc": "mocha 'server/tests/**/*.js' --bail --exit"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -17,24 +17,7 @@ describe("The feed route /feed", () => {
         .get("/feed")
         .end((err, res) => {
           res.should.have.status(200);
-          done();
-        });
-    });
-    it("should return an object", done => {
-      chai
-        .request(app)
-        .get("/feed")
-        .end((err, res) => {
-          res.should.have.status(200);
           res.body.should.be.a("object");
-          done();
-        });
-    });
-    it("should contain all information", done => {
-      chai
-        .request(app)
-        .get("/feed")
-        .end((_err, res) => {
           expect(res.body).to.have.deep.keys(
             "total_count",
             "items",

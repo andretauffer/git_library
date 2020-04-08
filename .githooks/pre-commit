@@ -7,3 +7,11 @@ if [ $? = 0 ]; then
     printf "\n\n\n ----------------- Fix all the linting errors before commiting ----------------- \n\n\n\n"
     exit 0
 fi
+
+npm run test:server:pc
+if [ $? = 0 ]; then
+    printf "\n\n\n ----------------- All server tests passed ----------------- \n\n\n\n"
+    elif [ $? = 1 ]; then
+    printf "\n\n\n ----------------- Fix all the non passing tests before commiting ----------------- \n\n\n\n"
+    exit 0
+fi

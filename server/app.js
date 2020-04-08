@@ -4,8 +4,6 @@ const bodyParser = require("body-parser");
 const { databaseConnect } = require("./db");
 const { search, feed } = require("./routers");
 
-console.log(global.gConfig);
-
 const app = express();
 
 databaseConnect();
@@ -26,4 +24,4 @@ app.use("/api/search", search);
 const port = process.env.PORT || 5000;
 module.exports = app.listen(port);
 
-console.log("App is listening on port " + port);
+console.debug("App is listening on port " + port);
