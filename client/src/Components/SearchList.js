@@ -56,7 +56,8 @@ SearchList.propTypes = {
     user: PropTypes.string,
     path: PropTypes.string,
     latestKeywords: PropTypes.array,
-    spinner: PropTypes.bool.isRequired
+    spinner: PropTypes.bool.isRequired,
+    error: PropTypes.string
   })
 };
 
