@@ -11,7 +11,8 @@
     "build": "react-scripts build",
     "client-test": "cd client && npm run test",
     "eject": "react-scripts eject",
-    "lint": "npx eslint client/src/**/*.js --fix --max-warnings 10"
+    "lint": "npx eslint client/src/**/*.js --fix --max-warnings 10",
+    "test:server": "mocha 'server/tests/**/*.js'"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,9 +40,12 @@
     "pg": "^7.12.1"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "dotenv": "^8.1.0",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.19.0",
+    "mocha": "^7.1.1",
     "nodemon": "^1.19.2",
     "prop-types": "^15.7.2",
     "stylelint": "^11.0.0"

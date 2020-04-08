@@ -1,5 +1,6 @@
 const { Pool } = require("pg");
 const pg = require("pg");
+const global = require("../../config");
 
 pg.types.setTypeParser(1082, "text", val => val);
 

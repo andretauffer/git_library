@@ -8,14 +8,7 @@ const defaultConfig = {
   databaseName: process.env.POSTGRES_DB,
   databasePort: process.env.POSTGRES_PORT,
   rootPath: process.env.PWD,
-  clientHost: "http://localhost:3000",
-  cookieMaxAge: 30 * 24 * 60 * 60 * 1000,
-  fileUpload: {
-    limits: {
-      files: 5,
-      fileSize: 300 * 1000
-    }
-  }
+  clientHost: "http://localhost:3000"
 };
 
 const testConfig = {

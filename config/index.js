@@ -6,3 +6,7 @@ const appConfig = environmentConfig[environment];
 global.gConfig = appConfig;
 
 console.debug(`The app is using the ${environment} configuration...`);
+
+module.exports = {
+  gConfig: appConfig
+};

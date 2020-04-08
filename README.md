@@ -58,7 +58,7 @@ Runs eslint with the fix tag. This script runs on every commit and will stop the
 
 - Requirements
   1. npm
-  2. docker if you wish to run the db functionalities. However the search engine and the default feed will work without the database. To install docker and be able to run the full project follow I recommend this article on how to do it in ubuntu 18.04: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
+  2. docker if you wish to run the db functionalities. However the search engine and the default feed will work without the database. To install docker and be able to run the full project I recommend this article on how to do it in ubuntu 18.04: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
 
 Steps to get it running using npm:
 
