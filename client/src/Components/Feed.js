@@ -28,7 +28,7 @@ const FeedHeader = styled.div`
   text-transform: uppercase;
   font-weight: bold;
   width: 100%;
-  min-height: ${props =>
+  min-height: ${(props) =>
     props.latestKeywords.length === 0 ? "70px" : "150px"};
   font-size: 0.9rem;
   display: flex;
@@ -57,7 +57,7 @@ const Keyword = styled.div`
 
 const HeaderHighlight = styled.p`
   color: var(--blue);
-  font-size: ${props => (props.header ? props.header : "1rem")};
+  font-size: ${(props) => (props.header ? props.header : "1rem")};
   letter-spacing: 1px;
 `;
 
@@ -69,9 +69,9 @@ export default withSearchState(({ searchState, searchDispatch }) => {
     searchDispatch({ method: "spinner" });
 
     const getFeed = () => {
-      fetch(`http://localhost:5000/feed/`)
-        .then(res => res.json())
-        .then(response => {
+      fetch(`/feed/`)
+        .then((res) => res.json())
+        .then((response) => {
           if (response.error) {
             return searchDispatch({ method: "error", error: response.error });
           }
