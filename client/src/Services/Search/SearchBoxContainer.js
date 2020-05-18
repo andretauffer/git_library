@@ -1,22 +1,22 @@
 import React, { useEffect } from "react";
 
-export default Component => {
+export default (Component) => {
   const Container = ({ searchState, searchDispatch, ...props }) => {
     const { search, sort, totalPages, page, user, path } = searchState;
 
-    const onClickArrows = direction => {
+    const onClickArrows = (direction) => {
       if (direction === "left" && page > 1) {
         searchDispatch({
           method: "input",
           field: "page",
-          value: Number(page) - 1
+          value: Number(page) - 1,
         });
       }
       if (direction === "right" && page < totalPages) {
         searchDispatch({
           method: "input",
           field: "page",
-          value: Number(page) + 1
+          value: Number(page) + 1,
         });
       }
     };
@@ -30,23 +30,23 @@ export default Component => {
 
       const getSearch = () => {
         const query = user
-          ? `http://localhost:5000/api/search/${path}?q=${search}+user:${user}&sort=${sort}&page=${page}`
-          : `http://localhost:5000/api/search/${path}?q=${search}&sort=${sort}&page=${page}`;
+          ? `/api/search/${path}?q=${search}+user:${user}&sort=${sort}&page=${page}`
+          : `/api/search/${path}?q=${search}&sort=${sort}&page=${page}`;
 
         return setTimeout(() => {
           fetch(query)
-            .then(res => res.json())
-            .then(data => {
+            .then((res) => res.json())
+            .then((data) => {
               if (data.error) {
                 return searchDispatch({ method: "error", error: data.error });
               }
               return searchDispatch({
                 method: "updateList",
                 value: data,
-                path
+                path,
               });
             })
-            .catch(err => searchDispatch({ method: "error", error: err }));
+            .catch((err) => searchDispatch({ method: "error", error: err }));
         }, 3000);
       };
 

@@ -1,11 +1,14 @@
 const { Pool } = require("pg");
 const pg = require("pg");
-const global = require("../../config");
 
-pg.types.setTypeParser(1082, "text", val => val);
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config({ path: ".env" });
+}
+
+pg.types.setTypeParser(1082, "text", (val) => val);
 
 let pool = new Pool({
-  connectionString: global.gConfig.databaseConnectionString
+  connectionString: process.env.DATABASE_URL,
 });
 
 pool.on("error", (err, client) =>

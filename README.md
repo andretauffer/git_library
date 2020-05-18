@@ -5,6 +5,8 @@ The search results are displayed in 10 by page, in boxes that display the repo n
 The feed in the center gets populated on every load with the most recently updated repositories related to the most popular search topics in this platform, that are found in the database sorted by the latest updated.
 The database runs on a docker container. However, the search engine and the default feed should work even without a running database.
 
+## The app is live [here](https://git-library.herokuapp.com/)
+
 ### Next steps for the project
 
 1.  Add sorting options for the feed.
