@@ -1,26 +1,26 @@
 const api = require("../api");
 const { feed, search } = api;
 
-const buildFeedQueries = array => {
+const buildFeedQueries = (array) => {
   let queries = [];
-  const keywords = array.filter(kw => kw.type === "keyword");
+  const keywords = array.filter((kw) => kw.type === "keyword");
   if (keywords) {
-    keywords.forEach(kw => queries.push(`q=${kw.name}`));
+    keywords.forEach((kw) => queries.push(`q=${kw.name}`));
   }
   return queries;
 };
 
-const getNewsFeed = async array => {
+const getNewsFeed = async (array) => {
   const queries = [];
-  array.forEach(query => {
+  array.forEach((query) => {
     queries.push(feed.getNewsFeed(`repositories?${query}`, "repositories"));
   });
   return Promise.all(queries);
 };
 
-const joinFeed = array => {
+const joinFeed = (array) => {
   const result = { path: "repositories", total_count: 0, items: [] };
-  array.forEach(response => {
+  array.forEach((response) => {
     result.items.push(...response.items);
     result.total_count = result.total_count + response.total_count;
   });
@@ -34,7 +34,7 @@ const getFeed = async (req, res) => {
   if (keywords && keywords.length > 0) {
     const queries = buildFeedQueries(keywords);
     const newsFeed = getNewsFeed(queries);
-    return newsFeed.then(data => {
+    return newsFeed.then((data) => {
       if (data[0].error) {
         res.send({ error: data[0].error });
       } else {
@@ -50,5 +50,5 @@ const getFeed = async (req, res) => {
 };
 
 module.exports = {
-  getFeed
+  getFeed,
 };

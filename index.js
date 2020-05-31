@@ -16,8 +16,12 @@ app.use(express.static(path.join(__dirname, "client/build")));
 app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  next();
+  if (req.headers.host === process.env.HOST) {
+    res.setHeader("Access-Control-Allow-Origin", process.env.HOST);
+    next();
+  } else {
+    res.send("Connection refused");
+  }
 });
 
 app.get("/feed", feed);

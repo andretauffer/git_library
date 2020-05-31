@@ -50,7 +50,9 @@ export default (Component) => {
         }, 3000);
       };
 
-      search && getSearch();
+      if (search) {
+        timer = getSearch();
+      }
 
       return () => {
         clearTimeout(timer);

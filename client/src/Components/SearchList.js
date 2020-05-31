@@ -29,10 +29,10 @@ const SearchList = ({ searchState }) => {
       {searchList &&
         searchList.map((item, i) => (
           <Card
-            key={item.id + i}
+            key={i + 2 * i}
             {...{
               item,
-              path
+              path,
             }}
           />
         ))}
@@ -57,8 +57,8 @@ SearchList.propTypes = {
     path: PropTypes.string,
     latestKeywords: PropTypes.array,
     spinner: PropTypes.bool.isRequired,
-    error: PropTypes.string
-  })
+    error: PropTypes.string,
+  }),
 };
 
 export default SearchList;
